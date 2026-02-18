@@ -1,0 +1,141 @@
+Un número es tramposo si cumple las tres condiciones al mismo tiempo:
+
+Es par
+
+NO es múltiplo de 4
+
+La suma de sus dígitos es impar
+
+
+INICIO
+
+  LEER n
+
+  // 1. Calcular suma de dígitos
+  suma = 0
+  temp = n
+
+  MIENTRAS temp > 0 HACER
+      digito = temp MOD 10
+      suma = suma + digito
+      temp = temp DIV 10
+  FIN MIENTRAS
+
+  // 2. Verificar condiciones
+  esPar = (n MOD 2 = 0)
+  esMultiplo4 = (n MOD 4 = 0)
+  sumaImpar = (suma MOD 2 ≠ 0)
+
+  SI esPar Y NO esMultiplo4 Y sumaImpar ENTONCES
+      ESCRIBIR "Número tramposo"
+  SINO
+      ESCRIBIR "Número normal"
+  FIN SI
+
+FIN
+
+
+
+
+
+
+Problema: Tienes 8 monedas idénticas en apariencia, 
+pero una es falsa y pesa menos. Tienes una balanza de dos platos. 
+¿Cuál es el mínimo número de pesadas para identificar la moneda falsa?
+
+ALGORITMO encontrarMonedaFalsa(monedas[8])
+    
+    // Primera pesada: dividir en 3 grupos (3, 3, 2)
+    grupo1 = monedas[0, 1, 2]
+    grupo2 = monedas[3, 4, 5]
+    grupo3 = monedas[6, 7]
+    
+    SI pesar(grupo1, grupo2) == EQUILIBRIO ENTONCES
+        // La falsa está en grupo3
+        SI pesar(moneda[6], moneda[7]) == IZQUIERDA_MAS_LIGERA ENTONCES
+            RETORNAR moneda[6]
+        SINO
+            RETORNAR moneda[7]
+        FIN SI
+        
+    SINO SI pesar(grupo1, grupo2) == IZQUIERDA_MAS_LIGERA ENTONCES
+        // La falsa está en grupo1
+        SI pesar(moneda[0], moneda[1]) == EQUILIBRIO ENTONCES
+            RETORNAR moneda[2]
+        SINO SI pesar(moneda[0], moneda[1]) == IZQUIERDA_MAS_LIGERA ENTONCES
+            RETORNAR moneda[0]
+        SINO
+            RETORNAR moneda[1]
+        FIN SI
+        
+    SINO
+        // La falsa está en grupo2
+        SI pesar(moneda[3], moneda[4]) == EQUILIBRIO ENTONCES
+            RETORNAR moneda[5]
+        SINO SI pesar(moneda[3], moneda[4]) == IZQUIERDA_MAS_LIGERA ENTONCES
+            RETORNAR moneda[3]
+        SINO
+            RETORNAR moneda[4]
+        FIN SI
+    FIN SI
+    
+FIN ALGORITMO
+
+
+
+
+Tienes una pizza circular. Con solo 3 cortes rectos (de lado a lado), ¿cuál es el máximo número de porciones que puedes obtener?
+
+
+
+ALGORITMO maximoPorcionesPizza(numeroCortes)
+    
+    porciones = 1
+    
+    PARA corte = 1 HASTA numeroCortes HACER
+        // Cada nuevo corte intersecta todos los anteriores
+        porciones = porciones + corte
+    FIN PARA
+    
+    RETORNAR porciones
+    
+FIN ALGORITMO
+
+// Para 3 cortes:
+INICIO
+    porciones = 1
+    
+    // Corte 1
+    porciones = 1 + 1 = 2
+    
+    // Corte 2 (intersecta el corte 1)
+    porciones = 2 + 2 = 4
+    
+    // Corte 3 (intersecta cortes 1 y 2)
+    porciones = 4 + 3 = 7
+    
+    MOSTRAR "Máximo de porciones: 7"
+FIN
+
+
+
+
+Problema : Acceso al sistema
+
+Enunciado: Un usuario puede acceder si: Es mayor de 18, tiene clave correcta y cumple una de estas: Es administrador o  ha iniciado sesión más de 3 veces y NO está bloqueado
+
+
+INICIO
+  LEER edad
+  LEER claveCorrecta
+  LEER rol
+  LEER intentos
+  LEER bloqueado
+
+  SI edad > 18 Y claveCorrecta = VERDADERO Y 
+     (rol = "ADMIN" O (intentos > 3 Y bloqueado = FALSO)) ENTONCES
+        ESCRIBIR "Acceso permitido"
+  SINO
+        ESCRIBIR "Acceso denegado"
+  FIN SI
+FIN
